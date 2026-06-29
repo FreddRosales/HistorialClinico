@@ -21,6 +21,7 @@ public class FrmRegistroCon extends javax.swing.JFrame {
      */
     public FrmRegistroCon(ControladorPaciente controladorPaciente) {
         initComponents();
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Ventana/Logo.png")).getImage());
         this.controladorPaciente = controladorPaciente;
         setLocationRelativeTo(null);
         lblMensaje.setText("");
@@ -83,6 +84,22 @@ public class FrmRegistroCon extends javax.swing.JFrame {
         lblPA = new javax.swing.JLabel();
         txtPA = new javax.swing.JTextField();
         btnCalcularIMC = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        lblDeporte = new javax.swing.JLabel();
+        rbDeporteSi = new javax.swing.JRadioButton();
+        rbDeporteNo = new javax.swing.JRadioButton();
+        lblApp = new javax.swing.JLabel();
+        rbAppSi = new javax.swing.JRadioButton();
+        rbAppNo = new javax.swing.JRadioButton();
+        lblCirugia = new javax.swing.JLabel();
+        rbCirugiaSi = new javax.swing.JRadioButton();
+        rbCirugiasNo = new javax.swing.JRadioButton();
+        lblIntoxi = new javax.swing.JLabel();
+        rbIntoxiSi = new javax.swing.JRadioButton();
+        rbIntoxiNo = new javax.swing.JRadioButton();
+        lblTrabajo = new javax.swing.JLabel();
+        rbTrabajoSi = new javax.swing.JRadioButton();
+        rbTrabajoNo = new javax.swing.JRadioButton();
         jPanel1 = new javax.swing.JPanel();
         lblO3 = new javax.swing.JLabel();
         lblPRP = new javax.swing.JLabel();
@@ -165,22 +182,141 @@ public class FrmRegistroCon extends javax.swing.JFrame {
         btnCalcularIMC.setText("Calcular IMC");
         btnCalcularIMC.addActionListener(this::btnCalcularIMCActionPerformed);
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Antecedentes"));
+
+        lblDeporte.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblDeporte.setText("Deporte:");
+
+        rbDeporteSi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        rbDeporteSi.setText("Si");
+
+        rbDeporteNo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        rbDeporteNo.setText("No");
+
+        lblApp.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblApp.setText("APP:");
+
+        rbAppSi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        rbAppSi.setText("Si");
+
+        rbAppNo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        rbAppNo.setText("No");
+
+        lblCirugia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblCirugia.setText("Cirugías:");
+
+        rbCirugiaSi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        rbCirugiaSi.setText("Si");
+
+        rbCirugiasNo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        rbCirugiasNo.setText("No");
+
+        lblIntoxi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblIntoxi.setText("Intoxicación:");
+
+        rbIntoxiSi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        rbIntoxiSi.setText("Si");
+
+        rbIntoxiNo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        rbIntoxiNo.setText("No");
+
+        lblTrabajo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblTrabajo.setText("Trabajo:");
+
+        rbTrabajoSi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        rbTrabajoSi.setText("Si");
+
+        rbTrabajoNo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        rbTrabajoNo.setText("No");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblCirugia)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbCirugiaSi)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbCirugiasNo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblApp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rbAppSi)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbAppNo))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblIntoxi)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbIntoxiSi)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbIntoxiNo))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbTrabajoSi)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbTrabajoNo)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblDeporte)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbDeporteSi)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbDeporteNo)))
+                .addContainerGap(154, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblApp)
+                    .addComponent(rbAppSi)
+                    .addComponent(rbAppNo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCirugia)
+                    .addComponent(rbCirugiaSi)
+                    .addComponent(rbCirugiasNo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblIntoxi)
+                    .addComponent(rbIntoxiSi)
+                    .addComponent(rbIntoxiNo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTrabajo)
+                    .addComponent(rbTrabajoSi)
+                    .addComponent(rbTrabajoNo)
+                    .addComponent(lblDeporte)
+                    .addComponent(rbDeporteSi)
+                    .addComponent(rbDeporteNo))
+                .addContainerGap(101, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jpDatosConsultaLayout = new javax.swing.GroupLayout(jpDatosConsulta);
         jpDatosConsulta.setLayout(jpDatosConsultaLayout);
         jpDatosConsultaLayout.setHorizontalGroup(
             jpDatosConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpDatosConsultaLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jpDatosConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpDatosConsultaLayout.createSequentialGroup()
-                        .addComponent(lblMotivo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jscrollMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 1010, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpDatosConsultaLayout.createSequentialGroup()
-                        .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpDatosConsultaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jpDatosConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpDatosConsultaLayout.createSequentialGroup()
+                                .addComponent(lblMotivo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jscrollMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpDatosConsultaLayout.createSequentialGroup()
+                                .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatosConsultaLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblPeso)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,35 +332,41 @@ public class FrmRegistroCon extends javax.swing.JFrame {
                         .addComponent(lblPA)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPA, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(94, 94, 94)
-                        .addComponent(btnCalcularIMC)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addGap(51, 51, 51)
+                        .addComponent(btnCalcularIMC)
+                        .addGap(18, 18, 18)))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jpDatosConsultaLayout.setVerticalGroup(
             jpDatosConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpDatosConsultaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpDatosConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFecha)
-                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpDatosConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jscrollMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpDatosConsultaLayout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(lblMotivo)))
-                .addGap(20, 20, 20)
-                .addGroup(jpDatosConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPeso)
-                    .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTalla)
-                    .addComponent(txtTalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblIMC)
-                    .addComponent(txtIMC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPA)
-                    .addComponent(txtPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCalcularIMC))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jpDatosConsultaLayout.createSequentialGroup()
+                        .addGroup(jpDatosConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblFecha)
+                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jpDatosConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jscrollMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jpDatosConsultaLayout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(lblMotivo)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jpDatosConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPeso)
+                            .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTalla)
+                            .addComponent(txtTalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblIMC)
+                            .addComponent(txtIMC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPA)
+                            .addComponent(txtPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCalcularIMC))
+                        .addGap(58, 58, 58))))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Indicaciones / Tratamiento"));
@@ -317,11 +459,10 @@ public class FrmRegistroCon extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(72, 72, 72)
-                        .addComponent(lblIndicaciones)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(lblIndicaciones)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -337,7 +478,7 @@ public class FrmRegistroCon extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnCancelar))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(12, Short.MAX_VALUE))))
+                        .addContainerGap(14, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -353,10 +494,9 @@ public class FrmRegistroCon extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jpBuscarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpDatosConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpDatosConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -387,7 +527,17 @@ public class FrmRegistroCon extends javax.swing.JFrame {
         );
 
         pacienteEncontrado.agregarConsulta(nuevaConsulta);
-
+        // Actualizar los valores de antecedentes con los datos de la consulta
+        Modelo.AntecedentesMedicos ant = pacienteEncontrado.getAntecedentes();
+        ant.setApp(rbAppSi.isSelected());
+        ant.setCirugias(rbCirugiaSi.isSelected());
+        ant.setIntoxicacion(rbIntoxiSi.isSelected());
+        ant.setTrabajo(rbTrabajoSi.isSelected());
+        ant.setDeporte(rbDeporteSi.isSelected());
+        ant.setPeso(nuevaConsulta.getPeso());
+        ant.setTalla(nuevaConsulta.getTalla());
+        ant.setPa(nuevaConsulta.getPa());
+        ant.actualizarFecha(); // guarda snapshot con los valores actualizados
         txtIMC.setText(String.format("%.2f", nuevaConsulta.getImc()));
 
         lblMensaje.setForeground(new java.awt.Color(0, 128, 0));
@@ -474,16 +624,21 @@ public class FrmRegistroCon extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel jpBuscarPaciente;
     private javax.swing.JPanel jpDatosConsulta;
     private javax.swing.JScrollPane jscrollMotivo;
+    private javax.swing.JLabel lblApp;
     private javax.swing.JLabel lblBuscarDNi;
+    private javax.swing.JLabel lblCirugia;
+    private javax.swing.JLabel lblDeporte;
     private javax.swing.JLabel lblDiagnostico;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblIMC;
     private javax.swing.JLabel lblIndicaciones;
+    private javax.swing.JLabel lblIntoxi;
     private javax.swing.JLabel lblMensaje;
     private javax.swing.JLabel lblMotivo;
     private javax.swing.JLabel lblNombrePaciente;
@@ -493,6 +648,17 @@ public class FrmRegistroCon extends javax.swing.JFrame {
     private javax.swing.JLabel lblPeso;
     private javax.swing.JLabel lblTalla;
     private javax.swing.JLabel lblTerapia;
+    private javax.swing.JLabel lblTrabajo;
+    private javax.swing.JRadioButton rbAppNo;
+    private javax.swing.JRadioButton rbAppSi;
+    private javax.swing.JRadioButton rbCirugiaSi;
+    private javax.swing.JRadioButton rbCirugiasNo;
+    private javax.swing.JRadioButton rbDeporteNo;
+    private javax.swing.JRadioButton rbDeporteSi;
+    private javax.swing.JRadioButton rbIntoxiNo;
+    private javax.swing.JRadioButton rbIntoxiSi;
+    private javax.swing.JRadioButton rbTrabajoNo;
+    private javax.swing.JRadioButton rbTrabajoSi;
     private javax.swing.JTextArea txtAreaDiagnos;
     private javax.swing.JTextArea txtAreaIndicaciones;
     private javax.swing.JTextField txtBuscarDNI;

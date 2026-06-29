@@ -8,7 +8,7 @@ package Modelo;
  *
  * @author ACER
  */
-public class Consulta {
+public class Consulta implements Calculable{
 
     private String fecha;
     private String motivoconsulta;
@@ -39,7 +39,8 @@ public class Consulta {
         setDiagnostico(diagnostico);
         this.imc = calcularIMC(this.peso, this.talla);
     }
-
+    
+    @Override
     public double calcularIMC(double peso, double talla) {
         if (talla <= 0) {
             return 0;

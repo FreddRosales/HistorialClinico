@@ -83,4 +83,16 @@ public class ControladorPaciente {
         }
         return resultados;
     }
+    public boolean eliminarPaciente(String dni)
+    {
+     for(int i = 0; i < listaPacientes.size();i++)
+     {
+       if(listaPacientes.get(i).getNumdoc().equals(dni))
+       {
+        listaPacientes.remove(i);
+        return true;
+       }
+    }
+   return false;
+   }
 }

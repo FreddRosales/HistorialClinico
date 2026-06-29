@@ -4,6 +4,8 @@
  */
 package Ventana;
 import Controlador.ControladorPaciente;
+import Modelo.FIsioterapeuta;
+import Modelo.Recepcionista;
 import Modelo.Usuario;
 
 /**
@@ -18,26 +20,38 @@ public class FrmPrincipal extends javax.swing.JFrame {
      * Creates new form FrmPrincipal
      */
     private ControladorPaciente controladorPaciente;
-    private Usuario usuarioActual;
+    private Usuario usuarioActual;//Upcasting: Se guarda como Usuario
     
-    public FrmPrincipal(Usuario usuario) {
+    public FrmPrincipal(ControladorPaciente controladorPaciente1, Usuario usuario) {
         initComponents();
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Ventana/Logo.png")).getImage());
         this.usuarioActual = usuario;
-        controladorPaciente = new ControladorPaciente();
-        setLocationRelativeTo(null);
-        lblBienvenida.setText("Bienvenido, " + usuario.getNombreCompleto() 
-            + "  |  Rol: " + usuario.getRol());
-
-        aplicarPermisosPorRol();
+        this.controladorPaciente = controladorPaciente1;
+        configurarPermisos();
     }
-    private void aplicarPermisosPorRol() {
-    if (usuarioActual.getRol().equals("RECEPCIONISTA")) {
-        // Recepcionista NO puede:
+    private void configurarPermisos() {
+        //DOwncasting
+    if (usuarioActual instanceof FIsioterapeuta) {
+        btnRegistrarPaciente.setEnabled(true);
+        btnRegistrarConsulta.setEnabled(true);
+        btnBuscar.setEnabled(true);
+        btnActualizar.setEnabled(true);
+        btnEliminar.setEnabled(true);
+        btnCerrar.setEnabled(true);
+        btnListado.setEnabled(true);
+        lblBienvenida.setText(" Bienvenido Administrador --> Rol: Fisioterapeuta");
+    }
+    else if(usuarioActual instanceof Recepcionista)
+    {
+        btnRegistrarPaciente.setEnabled(true);
         btnRegistrarConsulta.setEnabled(false);
+        btnBuscar.setEnabled(true);
         btnActualizar.setEnabled(false);
         btnEliminar.setEnabled(false);
+        btnCerrar.setEnabled(true);
+        btnListado.setEnabled(true);
+        lblBienvenida.setText(" Bienvenido Recepcionista --> Rol: Recepcionista");
     }
-    // ADMIN tiene acceso a todo (no se restringe nada)
 }
 
     /**
@@ -69,8 +83,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblTitulo.setText("BAGANET MEDICINA REGENERATIVA - Sistema de Historias Clínicas");
-
-        lblBienvenida.setText("Bienvenido, [nombre] - Rol: [rol]");
 
         btnRegistrarPaciente.setText("Registrar Paciente");
         btnRegistrarPaciente.addActionListener(this::btnRegistrarPacienteActionPerformed);
@@ -174,8 +186,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnListadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListadoActionPerformed
-    //FrmListadoPacientes frm = new FrmListadoPacientes();
-    //frm.setVisible(true);
+    FrmListadoPacientes frm = new FrmListadoPacientes(controladorPaciente);
+    frm.setVisible(true);
     }//GEN-LAST:event_btnListadoActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -184,8 +196,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-    //FrmEliminarPaciente frm = new FrmEliminarPaciente();
-    //frm.setVisible(true);
+    FrmEliminarPaciente frm = new FrmEliminarPaciente(controladorPaciente);
+    frm.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed

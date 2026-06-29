@@ -24,10 +24,10 @@ public class FrmBusquedaPaciente extends javax.swing.JFrame {
     
     public FrmBusquedaPaciente(ControladorPaciente controladorPaciente) {
         initComponents();
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Ventana/Logo.png")).getImage());
         this.controladorPaciente = controladorPaciente;
         setLocationRelativeTo(null);
         lblMensaje.setText("");
-        btnVer.setEnabled(false);
     }
 
     /**
@@ -43,11 +43,6 @@ public class FrmBusquedaPaciente extends javax.swing.JFrame {
         lblCriterio = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
-        jpResultados = new javax.swing.JPanel();
-        jscResultados = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jpBotones = new javax.swing.JPanel();
-        btnVer = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
         lblMensaje = new javax.swing.JLabel();
 
@@ -55,22 +50,33 @@ public class FrmBusquedaPaciente extends javax.swing.JFrame {
 
         jpBuscarPaciente.setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar Paciente"));
 
-        lblCriterio.setText("Buscar por DNI o Nombre/Apellido:");
+        lblCriterio.setText("Buscar por DNI:");
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(this::btnBuscarActionPerformed);
+
+        btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(this::btnCerrarActionPerformed);
+
+        lblMensaje.setText("jLabel1");
 
         javax.swing.GroupLayout jpBuscarPacienteLayout = new javax.swing.GroupLayout(jpBuscarPaciente);
         jpBuscarPaciente.setLayout(jpBuscarPacienteLayout);
         jpBuscarPacienteLayout.setHorizontalGroup(
             jpBuscarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpBuscarPacienteLayout.createSequentialGroup()
+            .addGroup(jpBuscarPacienteLayout.createSequentialGroup()
                 .addComponent(lblCriterio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtBuscar)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscar)
                 .addContainerGap())
+            .addGroup(jpBuscarPacienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnCerrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
         jpBuscarPacienteLayout.setVerticalGroup(
             jpBuscarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,77 +86,11 @@ public class FrmBusquedaPaciente extends javax.swing.JFrame {
                     .addComponent(lblCriterio)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jpResultados.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultados"));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "N° HC", "Nombres", "Apellidos", "TipoDoc", "NumDoc", "Edad"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jscResultados.setViewportView(jTable1);
-
-        javax.swing.GroupLayout jpResultadosLayout = new javax.swing.GroupLayout(jpResultados);
-        jpResultados.setLayout(jpResultadosLayout);
-        jpResultadosLayout.setHorizontalGroup(
-            jpResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jscResultados, javax.swing.GroupLayout.DEFAULT_SIZE, 828, Short.MAX_VALUE)
-        );
-        jpResultadosLayout.setVerticalGroup(
-            jpResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpResultadosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jscResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        btnVer.setText("Ver Historia Clínica");
-        btnVer.addActionListener(this::btnVerActionPerformed);
-
-        btnCerrar.setText("Cerrar");
-        btnCerrar.addActionListener(this::btnCerrarActionPerformed);
-
-        javax.swing.GroupLayout jpBotonesLayout = new javax.swing.GroupLayout(jpBotones);
-        jpBotones.setLayout(jpBotonesLayout);
-        jpBotonesLayout.setHorizontalGroup(
-            jpBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpBotonesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpBotonesLayout.createSequentialGroup()
-                        .addComponent(btnVer)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCerrar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpBotonesLayout.createSequentialGroup()
-                        .addComponent(lblMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(30, 30, 30))))
-        );
-        jpBotonesLayout.setVerticalGroup(
-            jpBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpBotonesLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jpBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVer)
-                    .addComponent(btnCerrar))
-                .addGap(18, 18, 18)
-                .addComponent(lblMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(28, 28, 28)
+                .addGroup(jpBuscarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCerrar)
+                    .addComponent(lblMensaje))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -158,17 +98,10 @@ public class FrmBusquedaPaciente extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jpBuscarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jpResultados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jpBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jpBuscarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpResultados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jpBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jpBuscarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -179,63 +112,23 @@ public class FrmBusquedaPaciente extends javax.swing.JFrame {
 
     if (criterio.isEmpty()) {
         lblMensaje.setForeground(java.awt.Color.RED);
-        lblMensaje.setText("Ingrese un DNI o nombre para buscar.");
+        lblMensaje.setText("Ingrese un DNI o nombre.");
         return;
     }
 
     resultadosBusqueda = controladorPaciente.buscarPacientes(criterio);
 
-    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-    modelo.setRowCount(0);
-
-    if (resultadosBusqueda.isEmpty()) {
-        // REQ-23
+    if (resultadosBusqueda == null || resultadosBusqueda.isEmpty()) {
         lblMensaje.setForeground(java.awt.Color.RED);
-        lblMensaje.setText("No se encontró ningún paciente con ese criterio de búsqueda.");
-        btnVer.setEnabled(false);
+        lblMensaje.setText("No se encontró ningún paciente con ese criterio.");
     } else {
-        // REQ-24
-        for (Paciente p : resultadosBusqueda) {
-            Object[] fila = {
-                p.getNumHC(),
-                p.getNombre(),
-                p.getPaterno() + " " + p.getMaterno(),
-                p.getTipodoc(),
-                p.getNumdoc(),
-                p.getEdad()
-            };
-            modelo.addRow(fila);
-        }
         lblMensaje.setForeground(new java.awt.Color(0, 128, 0));
-        lblMensaje.setText("Se encontraron " + resultadosBusqueda.size() + " paciente(s).");
-        btnVer.setEnabled(true);
-    }
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
-    int filaSeleccionada = jTable1.getSelectedRow();
-
-    if (filaSeleccionada == -1) {
-        lblMensaje.setForeground(java.awt.Color.RED);
-        lblMensaje.setText("Seleccione un paciente de la tabla.");
-        return;
-    }
-
-    int numHC = (int) jTable1.getValueAt(filaSeleccionada, 0);
-
-    Paciente pacienteSeleccionado = null;
-    for (Paciente p : resultadosBusqueda) {
-        if (p.getNumHC() == numHC) {
-            pacienteSeleccionado = p;
-            break;
-        }
-    }
-
-    if (pacienteSeleccionado != null) {
-        FrmHistoriaClinica frm = new FrmHistoriaClinica(pacienteSeleccionado);
+        lblMensaje.setText("Paciente encontrado. Abriendo historia clínica...");
+        Paciente paciente = resultadosBusqueda.get(0);
+        FrmHistoriaClinica frm = new FrmHistoriaClinica(controladorPaciente, paciente);
         frm.setVisible(true);
     }
-    }//GEN-LAST:event_btnVerActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
     this.dispose();
@@ -249,12 +142,7 @@ public class FrmBusquedaPaciente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCerrar;
-    private javax.swing.JButton btnVer;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JPanel jpBotones;
     private javax.swing.JPanel jpBuscarPaciente;
-    private javax.swing.JPanel jpResultados;
-    private javax.swing.JScrollPane jscResultados;
     private javax.swing.JLabel lblCriterio;
     private javax.swing.JLabel lblMensaje;
     private javax.swing.JTextField txtBuscar;

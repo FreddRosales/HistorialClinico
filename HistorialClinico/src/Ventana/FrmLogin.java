@@ -4,6 +4,7 @@
  */
 package Ventana;
 
+import Controlador.ControladorPaciente;
 import Controlador.ControladorUsuario;
 import Modelo.Usuario;
 
@@ -17,13 +18,16 @@ public class FrmLogin extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmLogin.class.getName());
     private ControladorUsuario controladorUsuario;
+    private ControladorPaciente controladorPaciente;
 
     /**
      * Creates new form FrmLogin
      */
     public FrmLogin() {
         initComponents();
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Ventana/Logo.png")).getImage());
         controladorUsuario = new ControladorUsuario();
+        controladorPaciente = new ControladorPaciente();
         setLocationRelativeTo(null); // Centra la ventana
         lblMensaje.setText(""); // Limpia mensaje al iniciar
 
@@ -181,13 +185,19 @@ public class FrmLogin extends javax.swing.JFrame {
         lblMensaje.setText("Bienvenido, " + u.getNombreCompleto());
 
         // Abrimos el menú principal y cerramos el login
-        FrmPrincipal principal = new FrmPrincipal(u);
+        FrmPrincipal principal = new FrmPrincipal(controladorPaciente, u);
         principal.setVisible(true);
         this.dispose();
     } else {
         lblMensaje.setForeground(java.awt.Color.RED);
         lblMensaje.setText("Usuario, contraseña o rol incorrectos.");
         txtContrasena.setText("");
+    }
+    
+    if (rolSeleccionado.equals(".......")) {
+    lblMensaje.setText("Seleccione un rol.");
+    lblMensaje.setForeground(java.awt.Color.RED);
+    return;
     }
     }//GEN-LAST:event_btnIngresarActionPerformed
 

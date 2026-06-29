@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Ventana;
+import Controlador.ControladorPaciente;
 import Modelo.Paciente;
 import Modelo.Consulta;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -13,42 +15,87 @@ import javax.swing.table.DefaultTableModel;
 public class FrmHistoriaClinica extends javax.swing.JFrame {
     private Paciente paciente;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmHistoriaClinica.class.getName());
+    private final ControladorPaciente controladorPaciente;
 
     /**
      * Creates new form FrmHistoriaClinica
      */
-    public FrmHistoriaClinica(Paciente paciente) {
-        initComponents();
-        this.paciente = paciente;
-        setLocationRelativeTo(null);
-        cargarDatosPaciente();
-    }
+    public FrmHistoriaClinica(ControladorPaciente cp, Paciente paciente) {
+    initComponents();
+    setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Ventana/Logo.png")).getImage());
+    this.controladorPaciente = cp;
+    this.paciente = paciente;
+    setLocationRelativeTo(null);
+    cargarDatosPaciente();
+}
+    private void mostrarDetalleConsulta(Consulta c) {
+    javax.swing.JTextArea area = new javax.swing.JTextArea();
+    area.setEditable(false);
+    area.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 13));
+    area.setLineWrap(true);
+    area.setWrapStyleWord(true);
+    area.setText(
+        "Fecha:        " + c.getFecha() + "\n\n" +
+        "Motivo:\n" + c.getMotivoconsulta() + "\n\n" +
+        "IMC:          " + String.format("%.2f", c.getImc()) + "\n" +
+        "PA:           " + c.getPa() + "\n" +
+        "O3:           " + c.getO3() + "\n" +
+        "PRP:          " + c.getPrp() + "\n" +
+        "Terapia:      " + c.getTerapia() + "\n\n" +
+        "Indicaciones:\n" + c.getIndicaciones() + "\n\n" +
+        "Diagnóstico:\n" + c.getDiagnostico()
+    );
+
+    javax.swing.JScrollPane scroll = new javax.swing.JScrollPane(area);
+    scroll.setPreferredSize(new java.awt.Dimension(500, 350));
+
+    javax.swing.JOptionPane.showMessageDialog(
+        this,
+        scroll,
+        "Detalle de Consulta - " + c.getFecha(),
+        javax.swing.JOptionPane.PLAIN_MESSAGE
+    );
+}
     private void cargarDatosPaciente() {
     // Datos generales
-    lblHC.setText("N° HC: " + paciente.getNumHC());
-    lblNombreCompleto.setText("Paciente: " + paciente.getNombreCompleto());
-    lblTipoDoc.setText("Tipo Doc: " + paciente.getTipodoc());
-    lblNumDoc.setText("N° Doc: " + paciente.getNumdoc());
-    lblSexo.setText("Sexo: " + paciente.getSexo());
-    lblEdad.setText("Edad: " + paciente.getEdad());
-    lblFechaNaci.setText("Fecha de Nacimiento: " + paciente.getFechanaci());
-    lblDirecci.setText("Dirección: " + paciente.getDireccion());
-    lblTele.setText("Teléfono: " + paciente.getTelefono());
+    lblHC.setText("" + paciente.getNumHC());
+    lblNombreCompleto.setText("" + paciente.getNombreCompleto());
+    lblTipoDoc.setText("" + paciente.getTipodoc());
+    lblNumDoc.setText("" + paciente.getNumdoc());
+    lblSexo.setText("" + paciente.getSexo());
+    lblEdad.setText("" + paciente.getEdad());
+    lblFechaNaci.setText("" + paciente.getFechanaci());
+    lblDirecci.setText("" + paciente.getDireccion());
+    lblTele.setText("" + paciente.getTelefono());
 
-    // Antecedentes médicos
+    // Antecedentes con historial de fechas
     if (paciente.getAntecedentes() != null) {
-        txtareaAntecedentes.setText(paciente.getAntecedentes().toString());
+    StringBuilder sb = new StringBuilder();
+    ArrayList<String> snapshots = paciente.getAntecedentes().getHistorialAntecedentes();
+
+    if (snapshots == null || snapshots.isEmpty()) {
+        sb.append("Sin antecedentes registrados.");
     } else {
-        txtareaAntecedentes.setText("Sin antecedentes registrados.");
+        for (int i = 0; i < snapshots.size(); i++) {
+            if (i == 0) {
+                sb.append("=== REGISTRO INICIAL ===\n");
+            } else {
+                sb.append("\n=== ACTUALIZACIÓN ").append(i).append(" ===\n");
+            }
+            sb.append(snapshots.get(i)).append("\n");
+        }
+    }
+    txtareaAntecedentes.setText(sb.toString());
+    } else {
+    txtareaAntecedentes.setText("Sin antecedentes registrados.");
     }
     txtareaAntecedentes.setEnabled(false);
 
-    // Historial de consultas (REQ-19: ya viene ordenado de más reciente a más antigua)
+    // Historial de consultas
     DefaultTableModel modelo = (DefaultTableModel) tblConsultas.getModel();
     modelo.setRowCount(0);
-
     for (Consulta c : paciente.getConsultas()) {
-        Object[] fila = {
+        modelo.addRow(new Object[]{
             c.getFecha(),
             c.getMotivoconsulta(),
             String.format("%.2f", c.getImc()),
@@ -57,10 +104,20 @@ public class FrmHistoriaClinica extends javax.swing.JFrame {
             c.getPrp(),
             c.getTerapia(),
             c.getDiagnostico()
-        };
-        modelo.addRow(fila);
+        });
     }
+    tblConsultas.addMouseListener(new java.awt.event.MouseAdapter() {
+    @Override
+    public void mouseClicked(java.awt.event.MouseEvent evt) {
+        int fila = tblConsultas.getSelectedRow();
+        if (fila >= 0) {
+            Consulta c = paciente.getConsultas().get(fila);
+            mostrarDetalleConsulta(c);
+        }
+    }
+});
 }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -151,41 +208,41 @@ public class FrmHistoriaClinica extends javax.swing.JFrame {
                     .addGroup(jpDatosLayout.createSequentialGroup()
                         .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpDatosLayout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpDatosLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblTipoDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpDatosLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblNumDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpDatosLayout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpDatosLayout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpDatosLayout.createSequentialGroup()
                                 .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblFechaNaci, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpDatosLayout.createSequentialGroup()
                                 .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblTele, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpDatosLayout.createSequentialGroup()
                                 .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblDirecci, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(532, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblDirecci, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpDatosLayout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpDatosLayout.createSequentialGroup()
+                                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jpDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(538, Short.MAX_VALUE))
                     .addGroup(jpDatosLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblHC, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCerrar)
@@ -271,11 +328,11 @@ public class FrmHistoriaClinica extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Fecha", "Motivo", "IMC", "PA", "O3", "PRP", "Terapia", "Diagnóstico"
+                "Fecha", "Motivo", "IMC", "PA", "O3", "PRP", "Terapia", "Diagnostico"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

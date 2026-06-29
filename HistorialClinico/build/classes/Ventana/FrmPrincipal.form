@@ -115,9 +115,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblBienvenida">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Bienvenido, [nombre] - Rol: [rol]"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnRegistrarPaciente">
           <Properties>
