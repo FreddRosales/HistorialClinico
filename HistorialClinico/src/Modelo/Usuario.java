@@ -8,18 +8,20 @@ package Modelo;
  *
  * @author ACER
  */
-public class Usuario {
+public abstract class Usuario {
     private String username;
     private String contraseña;
-    private String rol; // "FISIOTERAPEUTA" o "RECEPCIONISTA"
     private String nombreCompleto;
 
-    public Usuario(String username, String contraseña, String rol, String nombreCompleto) {
+    public Usuario(String username, String contraseña, String nombreCompleto) {
         this.username = username;
         this.contraseña = contraseña;
-        this.rol = rol;
         this.nombreCompleto = nombreCompleto;
     }
+    // Métodos abstractos — cada subclase los implementa
+    public abstract String getRol();
+    public abstract boolean puedeRegistrarPaciente();
+    public abstract boolean puedeVerHistorial();
 
     public String getUsername() {
         return username;
@@ -35,14 +37,6 @@ public class Usuario {
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
-    }
-
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
     }
 
     public String getNombreCompleto() {

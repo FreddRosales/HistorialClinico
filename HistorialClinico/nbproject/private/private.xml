@@ -3,14 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/frodo/Documents/Astral/Java/Proyecto%20Final%20TPOO/HistorialClinico/src/historialclinico/HistorialClinico.java</file>
             <file>file:/C:/Users/frodo/Documents/Astral/Java/Proyecto%20Final%20TPOO/HistorialClinico/src/Ventana/FrmLogin.java</file>
             <file>file:/C:/Users/frodo/Documents/Astral/Java/Proyecto%20Final%20TPOO/HistorialClinico/src/Ventana/FrmPrincipal.java</file>
             <file>file:/C:/Users/frodo/Documents/Astral/Java/Proyecto%20Final%20TPOO/HistorialClinico/src/Ventana/FrmRegistroPa.java</file>
-            <file>file:/C:/Users/frodo/Documents/Astral/Java/Proyecto%20Final%20TPOO/HistorialClinico/src/Ventana/FrmRegistroCon.java</file>
-            <file>file:/C:/Users/frodo/Documents/Astral/Java/Proyecto%20Final%20TPOO/HistorialClinico/src/Ventana/FrmBusquedaPaciente.java</file>
             <file>file:/C:/Users/frodo/Documents/Astral/Java/Proyecto%20Final%20TPOO/HistorialClinico/src/Ventana/FrmHistoriaClinica.java</file>
-            <file>file:/C:/Users/frodo/Documents/Astral/Java/Proyecto%20Final%20TPOO/HistorialClinico/src/Ventana/FrmActualizarPaciente.java</file>
+            <file>file:/C:/Users/frodo/Documents/Astral/Java/Proyecto%20Final%20TPOO/HistorialClinico/src/Modelo/AntecedentesMedicos.java</file>
+            <file>file:/C:/Users/frodo/Documents/Astral/Java/Proyecto%20Final%20TPOO/HistorialClinico/src/Ventana/FrmRegistroCon.java</file>
+            <file>file:/C:/Users/frodo/Documents/Astral/Java/Proyecto%20Final%20TPOO/HistorialClinico/src/Ventana/FrmListadoPacientes.java</file>
         </group>
     </open-files>
 </project-private>

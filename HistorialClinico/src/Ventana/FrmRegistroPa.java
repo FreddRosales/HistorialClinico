@@ -22,10 +22,34 @@ public class FrmRegistroPa extends javax.swing.JFrame {
     private ControladorPaciente controladorPaciente;
     public FrmRegistroPa(ControladorPaciente controladorPaciente ) {
         initComponents();
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Ventana/Logo.png")).getImage());
         this.controladorPaciente = controladorPaciente;
         setLocationRelativeTo(null);
         lblMensaje.setText("");
         txtHC.setText("(automático)");
+        javax.swing.ButtonGroup bgSexo = new javax.swing.ButtonGroup();
+        bgSexo.add(rbF);
+        bgSexo.add(rbM);
+
+        javax.swing.ButtonGroup bgApp = new javax.swing.ButtonGroup();
+        bgApp.add(rbAppSi);
+        bgApp.add(rbAppNo);
+
+        javax.swing.ButtonGroup bgCirugia = new javax.swing.ButtonGroup();
+        bgCirugia.add(rbCirugiaSi);
+        bgCirugia.add(rbCirugiasNo);
+
+        javax.swing.ButtonGroup bgIntoxi = new javax.swing.ButtonGroup();
+        bgIntoxi.add(rbIntoxiSi);
+        bgIntoxi.add(rbIntoxiNo);
+
+        javax.swing.ButtonGroup bgTrabajo = new javax.swing.ButtonGroup();
+        bgTrabajo.add(rbTrabajoSi);
+        bgTrabajo.add(rbTrabajoNo);
+
+        javax.swing.ButtonGroup bgDeporte = new javax.swing.ButtonGroup();
+        bgDeporte.add(rbDeporteSi);
+        bgDeporte.add(rbDeporteNo);
     }
 
     /**
@@ -530,7 +554,8 @@ public class FrmRegistroPa extends javax.swing.JFrame {
             if (rbF.isSelected()) 
             {
                 sexo = "F";
-            } else if (rbM.isSelected()) 
+                
+            }else if (rbM.isSelected()) 
             {
                 sexo = "M";
             } else 
@@ -596,24 +621,34 @@ public class FrmRegistroPa extends javax.swing.JFrame {
         txtPaterno.setText("");
         txtMaterno.setText("");
 
-        rbF.setSelected(false);
-        rbM.setSelected(false);
-
         txtEdad.setText("");
         txtFechaNac.setText("");
         txtDireccion.setText("");
         txtTelefono.setText("");
 
-        rbAppSi.setSelected(false);
-        rbAppNo.setSelected(false);
-        rbCirugiaSi.setSelected(false);
-        rbCirugiasNo.setSelected(false);
-        rbIntoxiSi.setSelected(false);
-        rbIntoxiNo.setSelected(false);
-        rbTrabajoSi.setSelected(false);
-        rbTrabajoNo.setSelected(false);
-        rbDeporteSi.setSelected(false);
-        rbDeporteNo.setSelected(false);
+        javax.swing.ButtonGroup bgSexo = new javax.swing.ButtonGroup();
+        bgSexo.add(rbF); bgSexo.add(rbM);
+        bgSexo.clearSelection();
+
+        javax.swing.ButtonGroup bgApp = new javax.swing.ButtonGroup();
+        bgApp.add(rbAppSi); bgApp.add(rbAppNo);
+        bgApp.clearSelection();
+
+        javax.swing.ButtonGroup bgCirugia = new javax.swing.ButtonGroup();
+        bgCirugia.add(rbCirugiaSi); bgCirugia.add(rbCirugiasNo);
+        bgCirugia.clearSelection();
+
+        javax.swing.ButtonGroup bgIntoxi = new javax.swing.ButtonGroup();
+        bgIntoxi.add(rbIntoxiSi); bgIntoxi.add(rbIntoxiNo);
+        bgIntoxi.clearSelection();
+
+        javax.swing.ButtonGroup bgTrabajo = new javax.swing.ButtonGroup();
+        bgTrabajo.add(rbTrabajoSi); bgTrabajo.add(rbTrabajoNo);
+        bgTrabajo.clearSelection();
+
+        javax.swing.ButtonGroup bgDeporte = new javax.swing.ButtonGroup();
+        bgDeporte.add(rbDeporteSi); bgDeporte.add(rbDeporteNo);
+        bgDeporte.clearSelection();
 
         txtPeso.setText("");
         txtTalla.setText("");

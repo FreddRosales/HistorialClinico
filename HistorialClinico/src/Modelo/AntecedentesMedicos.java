@@ -4,11 +4,13 @@
  */
 package Modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ACER
  */
-public class AntecedentesMedicos {
+public class AntecedentesMedicos implements Calculable {
 
     private boolean app;
     private boolean cirugias;
@@ -19,6 +21,7 @@ public class AntecedentesMedicos {
     private String pa;
     private boolean trabajo;
     private boolean deporte;
+    private ArrayList<String> historialAntecedentes;
 
     public AntecedentesMedicos() {
     }
@@ -34,8 +37,11 @@ public class AntecedentesMedicos {
         this.trabajo = trabajo;
         this.deporte = deporte;
         this.imc = calcularIMC(this.peso, this.talla);
+        this.historialAntecedentes = new ArrayList<>();
+        actualizarFecha();
     }
 
+    @Override
     public double calcularIMC(double peso, double talla) {
         if (talla <= 0) {
             return 0;
@@ -129,7 +135,35 @@ public class AntecedentesMedicos {
     public void setDeporte(boolean deporte) {
         this.deporte = deporte;
     }
+    
+    public void actualizarFecha() {
+     java.time.LocalDateTime ahora = java.time.LocalDateTime.now();
+     java.time.format.DateTimeFormatter formato = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+     String fecha = ahora.format(formato);
 
+     // Guarda fecha + snapshot de los datos actuales
+     String snapshot = "[" + fecha + "] "
+         + "APP: " + (app ? "Sí" : "No")
+         + " | Cirugías: " + (cirugias ? "Sí" : "No")
+         + " | Intoxicación/Alergias: " + (intoxicacion ? "Sí" : "No")
+         + " | Trabajo: " + (trabajo ? "Sí" : "No")
+         + " | Deporte: " + (deporte ? "Sí" : "No")
+         + " | Peso: " + peso + " kg"
+         + " | Talla: " + talla + " cm"
+         + " | IMC: " + String.format("%.2f", imc)
+         + " | PA: " + pa;
+
+     historialAntecedentes.add(snapshot);
+    }
+
+    public ArrayList<String> getHistorialAntecedentes() {
+        return historialAntecedentes;
+    }
+
+    public String getUltimaActualizacion() {
+        if (historialAntecedentes == null || historialAntecedentes.isEmpty()) return "Sin actualizaciones";
+        return historialAntecedentes.get(historialAntecedentes.size() - 1);
+    }
     @Override
     public String toString() {
         return "APP: " + (app ? "Sí" : "No")

@@ -5,6 +5,8 @@
 package Controlador;
 
 import Modelo.Usuario;
+import Modelo.FIsioterapeuta;
+import Modelo.Recepcionista;
 import java.util.ArrayList;
 
 /**
@@ -22,22 +24,19 @@ public class ControladorUsuario
 
     // Usuarios precargados (mientras no hay BD - Solución C del informe)
     private void cargarUsuariosIniciales() {
-        listaUsuarios.add(new Usuario("admin", "admin123", "ADMIN", "Administrador General"));
-        listaUsuarios.add(new Usuario("recepcion", "recep123", "RECEPCIONISTA", "Recepcionista Baganet"));
+        listaUsuarios.add(new FIsioterapeuta("admin", "admin123", "Administrador General"));
+        listaUsuarios.add(new Recepcionista("recepcion", "recep123", "Recepcionista Baganet"));
     }
 
     // Valida usuario y contraseña, retorna el objeto Usuario si es correcto, null si no
     public Usuario validarLogin(String username, String password, String rolSeleccionado) {
-        for (Usuario u : listaUsuarios) {
-            if (u.getUsername().equals(username) && u.getContraseña().equals(password)) {
-                // Validamos que el rol coincida con lo seleccionado
-                if (rolSeleccionado.equals("Fisioterapeuta") && u.getRol().equals("ADMIN")) {
-                    return u;
-                } else if (rolSeleccionado.equals("Recepcionista") && u.getRol().equals("RECEPCIONISTA")) {
-                    return u;
-                }
+    for (Usuario u : listaUsuarios) {
+        if (u.getUsername().equals(username) && u.getContraseña().equals(password)) {
+            if (u.getRol().equalsIgnoreCase(rolSeleccionado)) {  // equalsIgnoreCase evita problemas de mayúsculas
+                return u;
             }
         }
-        return null;
+    }
+    return null;
     }
 }
